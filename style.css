@@ -64,3 +64,36 @@ img {
     width: 90%;
   }
 }
+#loadingSpiner{
+  margin-top: 40px;
+  
+}
+#headline{
+  padding: 3%;
+  border-radius: 10px;
+  background-color: #ffb5b549;
+  margin-bottom: 40px;
+
+}
+#spiner{
+  margin: 40px;
+}
+#select-image{
+  background-color: #61acf344;
+  padding: 5px;
+  border-radius: 20px;
+
+}
+#duration{
+  margin-bottom: 10px;
+  border: 2px solid;
+}
+#row-gallary{
+  margin-top: 40px;
+}
+#create-slider{
+  margin-bottom: 12px;
+}
+#search{
+  border: 2px solid;
+}

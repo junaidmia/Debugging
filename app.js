@@ -25,11 +25,14 @@ const showImages = (images) => {
     div.className = 'col-lg-3 col-md-4 col-xs-6 img-item mb-2';
     div.innerHTML = ` <img class="img-fluid img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
     gallery.appendChild(div)
+    toggleLoadingSpinner(false);
   });
-
+  // toggleSpinner();
 };
 
 const getImages = (query) => {
+  // toggleSpinner();
+  toggleLoadingSpinner(true);
   fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`)
     .then(response => response.json())
     .then(data => showImages(data.hits))
@@ -40,13 +43,12 @@ let slideIndex = 0;
 const selectItem = (event, img) => {
   let element = event.target;
   element.classList.toggle('added');
- 
+
   let item = sliders.indexOf(img);
   if (item === -1) {
     sliders.push(img);
-  } 
-  else {
-  sliders.pop(img);
+  } else {
+    sliders.pop(img);
   }
 };
 var timer;
@@ -112,37 +114,50 @@ const changeSlide = (index) => {
 };
 
 
-           //search Click handler
+//search Click handler
 
-const showPictures = () =>{
+const showPictures = () => {
   document.querySelector('.main').style.display = 'none';
   clearInterval(timer);
   getImages(search.value)
   sliders.length = 0;
 }
 
-            //click search 
+//click search 
 
 searchBtn.addEventListener('click', function () {
-   showPictures();
+  showPictures();
 });
 
-             //Enter key press search
- 
+//Enter key press search
+
 search.addEventListener('keypress', function (event) {
-   if (event.key === "Enter"){
-     showPictures();
-   }
+  if (event.key === "Enter") {
+    showPictures();
+  }
 });
 
 
 
 sliderBtn.addEventListener('click', function () {
   const sliderDuration = document.getElementById('duration').value || 1000;
-  if (sliderDuration <= 0){
-    alert( 'ohh man! please input a valid number. Negative numbers or "0" are not allow. If you input a negative number it become Crazy !!');
-  }else {
+  if (sliderDuration <= 0) {
+    alert('ohh man! please input a valid number. Negative numbers or "0" are not allow. If you input a negative number it become Crazy !!');
+  } else {
     createSlider();
   }
-  
+
 })
+
+                  //  features for bonus marks 
+
+    //  spinner    
+    const toggleLoadingSpinner = show =>{
+      const spinner = document.getElementById('loadingSpinner');
+      if(show){
+        spinner.classList.remove('d-none');
+      }else{
+        spinner.classList.add('d-none');
+      }  
+    };
+
