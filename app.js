@@ -27,11 +27,10 @@ const showImages = (images) => {
     gallery.appendChild(div)
     toggleLoadingSpinner(false);
   });
-  // toggleSpinner();
+
 };
 
 const getImages = (query) => {
-  // toggleSpinner();
   toggleLoadingSpinner(true);
   fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`)
     .then(response => response.json())
